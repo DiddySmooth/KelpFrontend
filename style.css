@@ -1,7 +1,40 @@
 body{
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: #41b3a3
+}
+#businessList{
+    background-color: #e8a87c;
+    width: 800px;
+}
+.businessName{
+    text-align: center;
+    color: white;
+}
+.businessDescription{
+    text-align: left;
+    color:white;
+}
+.businessInput{
+    width: 175px;
+    height: 30px;
+    margin: 15px;
+}
+#businessImage{
+    width: 384px;
+    height: 216px;
+}
+#business{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#kelpLogo{
+    
+    font-size: 45px;
+    font-family: 'Orelega One', cursive;
+    margin: 0px;
 }
 #navBar{
     display: flex;
@@ -12,9 +45,12 @@ body{
     height: 30px
 }
 .navLinks{
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 0px;
-    height:30px;
+    margin-bottom: 0px;
+    margin-right:10px;
+    height:20px;
+    padding: 0;;
 }
 #searchBox{
     display: flex;
@@ -26,16 +62,40 @@ body{
     font-size: 40;
     text-align: center;
 }
+#signUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E8A87C;
+    width: 250px;
+    margin-top: 150px;
+    border-radius: 15px;
+}
+#signUpForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#signUpHeader{
+    width: 175px;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    
+}
+.signUpInput{
+    width: 175px;
+    height: 30px;
+    margin: 15px;
+}
 #welcome{
     display: flex;
     flex-direction: column;
     align-items: center;
     color:white
 }
-#kelpLogo{
-    
-    font-size: 45px;
-    font-family: 'Orelega One', cursive;
-    margin: 0px;
 
+.hidden{
+    display: none;
 }

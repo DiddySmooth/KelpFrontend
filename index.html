@@ -14,16 +14,74 @@
     <nav id="navBar">
         <p class="navLinks">Login</p>
         <p class="navLinks">Sign Up</p>
+        <p class="navLinks">View Business</p>
     </nav>
     
-    <section id="welcome">
-        <h1 id="kelpLogo">Kelp</h1>
-        <h2>Welcome to the Kelp review platform.</h2>
+    <section class="">
+        <div id="welcome">
+            <h1 id="kelpLogo">Kelp</h1>
+            <h2>Welcome to the Kelp review platform.</h2>
+            <form id="searchBox">
+                <input type="text" placeholder="Search" id="searchInput">
+            </form>
+        </div>
     </section>
-    <section id="searchBox">
-        <form>
-            <input type="text" placeholder="Search" id="searchInput">
-        </form>
+    
+    <section class="hidden">
+        <div id="signUp">
+            <h3 id="signUpHeader">Sign Up</h3>
+            <form id="signUpForm">
+                <input type="text" class="signUpInput" placeholder="First Name">
+                <input type="text" class="signUpInput" placeholder="Last Name">
+                <input type="text" class="signUpInput" placeholder="Email">
+                <input type="text" class="signUpInput" placeholder="Password">
+                <input type="text" class="signUpInput" placeholder="Re-enter Password">
+            </form>
+        </div>
+        
     </section>
+
+    <section class="hidden">
+        <div id="signUp">
+            <h3 id="signUpHeader">Log In</h3>
+            <form id="signUpForm">
+                <input type="text" class="signUpInput" placeholder="Email">
+                <input type="text" class="signUpInput" placeholder="Password">
+            </form>
+        </div>
+    </section>
+
+    <section class="hidden">
+        <div id="businessList">
+            <div id="business">
+                <h2 class="businessName">Business Name</h2>
+                <p class="businessDescription">Business Description</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="hidden">
+        <div id="signUp">
+            <h3 id="signUpHeader">Create Business</h3>
+            <form id="signUpForm">
+                <input type="text" class="businessInput" placeholder="Business Name">
+                <input type="text" class="businessInput" placeholder="Business Description">
+                <input type="text" class="businessInput" placeholder="Picture">
+
+            </form>
+        </div>
+        
+    </section>
+   
+    <section class="hidden">
+        <div id="businessList">
+            <div id="business">
+                <h2 class="businessName">Business Name</h2>
+                <p class="businessDescription">Business Description</p>
+                <img id="businessImage" src="https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png">
+            </div>
+        </div>
+    </section>   
+    
 </body>
 </html>
