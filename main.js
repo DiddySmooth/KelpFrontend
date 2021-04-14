@@ -12,6 +12,7 @@ const login = document.querySelector("#loginNav")
 const allBusiness = document.querySelector("#allBusinessNav")
 let singleBusiness = document.querySelector("#business")
 
+const signUpForm = document.querySelector("#signUpForm")
 /////Add Events listeners to elements /////
 
 
@@ -90,3 +91,45 @@ const switchToSingleBusinessScreen = () => {
     singleBusinessScreen.classList.remove("hidden")
     console.log("Home")
 }
+
+
+signUpForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    console.log("submitted")
+    const name = document.querySelector('#signUpName').value
+    const email = document.querySelector('#signUpEmail').value
+    const password1 = document.querySelector('#signUpPassword1').value
+    const password2 = document.querySelector('#signUpPassword2').value
+    
+    console.log(name, email, password1, password2)
+    try {
+        const response = await axios.post('replace with route', {
+            name: name,
+            email: email,
+            password: password
+    })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    console.log("submitted")
+    const email = document.querySelector('#loginEmail').value
+    const password = document.querySelector('#loginPassword').value
+
+    
+    console.log(email, password)
+    try {
+        const response = await axios.get('replace with route', {
+            email: email,
+            password: password
+    })
+    } catch (error) {
+        console.log(error)
+    }
+
+})
