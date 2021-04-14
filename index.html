@@ -12,12 +12,13 @@
 <body>
     
     <nav id="navBar">
-        <p class="navLinks">Login</p>
-        <p class="navLinks">Sign Up</p>
-        <p class="navLinks">View Business</p>
+        <p id="homeNav" class="navLinks">Home</p>
+        <p id="loginNav" class="navLinks">Login</p>
+        <p id="signUpNav" class="navLinks">Sign Up</p>
+        <p id="allBusinessNav" class="navLinks">View Business</p>
     </nav>
     
-    <section class="">
+    <section id="welcomeSection" class="">
         <div id="welcome">
             <h1 id="kelpLogo">Kelp</h1>
             <h2>Welcome to the Kelp review platform.</h2>
@@ -27,7 +28,7 @@
         </div>
     </section>
     
-    <section class="hidden">
+    <section id="signUpSection" class="hidden">
         <div id="signUp">
             <h3 id="signUpHeader">Sign Up</h3>
             <form id="signUpForm">
@@ -41,17 +42,17 @@
         
     </section>
 
-    <section class="hidden">
-        <div id="signUp">
-            <h3 id="signUpHeader">Log In</h3>
-            <form id="signUpForm">
-                <input type="text" class="signUpInput" placeholder="Email">
-                <input type="text" class="signUpInput" placeholder="Password">
+    <section id="loginSection" class="hidden">
+        <div id="login">
+            <h3 id="loginHeader">Log In</h3>
+            <form id="loginForm">
+                <input type="text" class="loginInput" placeholder="Email">
+                <input type="text" class="loginInput" placeholder="Password">
             </form>
         </div>
     </section>
 
-    <section class="hidden">
+    <section id="businessListSection" class="hidden">
         <div id="businessList">
             <div id="business">
                 <h2 class="businessName">Business Name</h2>
@@ -60,7 +61,7 @@
         </div>
     </section>
 
-    <section class="hidden">
+    <section id="createBusiness" class="hidden">
         <div id="signUp">
             <h3 id="signUpHeader">Create Business</h3>
             <form id="signUpForm">
@@ -73,7 +74,7 @@
         
     </section>
    
-    <section class="hidden">
+    <section id="businessPage" class="hidden">
         <div id="businessList">
             <div id="business">
                 <h2 class="businessName">Business Name</h2>
@@ -81,7 +82,9 @@
                 <img id="businessImage" src="https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png">
             </div>
         </div>
-    </section>   
-    
+    </section>
+
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
+    <script async defer src="./main.js"></script>
 </body>
 </html>
