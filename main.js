@@ -17,8 +17,10 @@ const profile = document.querySelector("#profileNav")
 const businessList = document.querySelector("#businessList")
 const singleBusinessList = document.querySelector("#singleBusinessList")
 const createSubmit = document.querySelector("#createBusinessForm")
-const businessEdit = document.querySelector("#businessEdit")
-const businessDelete = document.querySelector("#businessDelete")
+const businessEditButton = document.querySelector("#businessEdit")
+const businessDeleteButton = document.querySelector("#businessDelete")
+
+let singleId;
 
 const signUpForm = document.querySelector("#signUpForm")
 /////Add Events listeners to elements /////
@@ -39,6 +41,7 @@ login.addEventListener('click', () => {
 allBusiness.addEventListener('click', () => {
     switchToAllBusiness()
     getAllBusiness()
+    
 })
 
 logoutButton.addEventListener('click', () => {
@@ -157,7 +160,6 @@ signUpForm.addEventListener('submit', async (e) => {
     const password = document.querySelector('#signUpPassword1').value
     const password2 = document.querySelector('#signUpPassword2').value
     
-    console.log(name, email, password, password2)
     try {
         const response = await axios.post('http://localhost:3000/user', {
             name: name,
@@ -195,7 +197,7 @@ loginForm.addEventListener('submit', async (e) => {
 
 createSubmit.addEventListener('submit', async (e) => {
     e.preventDefault()
-    console.log("click")
+
 
     let userId = localStorage.getItem('userId')
     const name = document.querySelector('#businessName').value
@@ -258,14 +260,15 @@ const getAllBusiness = async () =>{
 const getAllUserBusiness = async () =>{
     userId = localStorage.getItem('userId')
     try {
-        const response = await axios.get('replace with route', {
+        const response = await axios.get(`http://localhost:3000/business/`, {
     })
     
+    console.log(response)
     let div = document.createElement('div')
     let h2 = document.createElement('h2')
     let p = document.createElement('p')
 
-    div.setAttribute("businessId", id)
+
     div.setAttribute("id","business")
     h2.setAttribute("id","businessName")
     p.setAttribute("id", "businessDescription")
@@ -290,11 +293,11 @@ const getSingleBusiness = async (id) =>{
         const response = await axios.get(`http://localhost:3000/business/${id}`, {
     })
     /////Add business into the DOM/////
-    
+    singleId = id
+    console.log(id, singleId)
     let div = document.createElement('div')
     let h2 = document.createElement('h2')
     let p = document.createElement('p')
-    
 
 
     div.classList.add("business")
@@ -306,16 +309,34 @@ const getSingleBusiness = async (id) =>{
 
     div.append(h2)
     div.append(p)
-    div.addEventListener('click', () => {
-        switchToSingleBusinessScreen(div.getAttribute("businessId"))
-    })
+
     singleBusinessList.append(div)
+    
+    
+
+
     
     } catch (error) { 
         console.log(error)
     }
 }
 
+businessEditButton.addEventListener('click', () => {
+    businessEdit(singleId)
+})
+
+businessDeleteButton.addEventListener('click', () => {
+    businessDelete(singleId)
+})
+
+const businessDelete = async (id) => {
+    console.log(id)
+    let res = await axios.delete(`http://localhost:3000/business/${id}`)
+    console.log(res)
+    switchToAllBusiness()
+    getAllBusiness()
+    
+}
 
 
 
