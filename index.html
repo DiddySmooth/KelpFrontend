@@ -17,7 +17,7 @@
         <p id="signUpNav" class="navLinks">Sign Up</p>
         <p id="allBusinessNav" class="navLinks">All</p>
         <p id="logoutNav" class="navLinks, hidden">Logout</p>
-        <p id="myBusinessNav" class="navLinks">My Businesses</p>
+        <p id="profileNav" class="navLinks">Profile</p>
     </nav>
     
     <section id="welcomeSection" class="">
@@ -57,21 +57,19 @@
 
     <section id="businessListSection" class="hidden">
         <div id="businessList">
-            <div id="business">
-                <h2 class="businessName">Business Name</h2>
-                <p class="businessDescription">Business Description</p>
-            </div>
         </div>
     </section>
 
     <section id="createBusiness" class="hidden">
-        <div id="signUp">
-            <h3 id="signUpHeader">Create Business</h3>
-            <form id="signUpForm">
-                <input type="text" class="businessInput" placeholder="Business Name">
-                <input type="text" class="businessInput" placeholder="Business Description">
-                <input type="text" class="businessInput" placeholder="Picture">
-
+        <div id="businessCreate">
+            <h3 id="createBusinessHeader">Create Business</h3>
+            <form id="createBusinessForm">
+                <input id="businessName"type="text" class="businessInput" placeholder="Business Name">
+                <input id="businessAddress" type="text" class="businessInput" placeholder="Business Address">
+                <input id="businessDescription"type="text" class="businessInput" placeholder="Business Description">
+                <input id="businessType" type="text" class="businessInput" placeholder="Business Type">
+                <input id="businessImg"type="text" class="businessInput" placeholder="Picture">
+                <input type="submit" value="Submit!">
             </form>
         </div>
         
@@ -83,7 +81,26 @@
                 <h2 class="businessName">Business Name</h2>
                 <p class="businessDescription">Business Description</p>
                 <img id="businessImage" src="https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png">
+                <button>Edit</button>
             </div>
+        </div>
+    </section>
+
+    <section id="editBusinessPage" class="hidden">
+        <div id="businessEdit">
+            <input id="editName" type="text" class="businessInput" placeholder="Business Name">
+            <input id="editDescription" type="text" class="businessInput" placeholder="Business Description">
+            <input id="editImage"type="text" class="businessInput" placeholder="Picture">
+        </div>
+    </section>
+
+
+    <section id="profilePage" class="hidden">
+        <div id="userProfile">
+            <h2>Users Profile</h2>
+            <button id="myBusinessNav">My businesses</button>
+            <button>Edit Profile</button>
+            <button>Delete Profile</button>
         </div>
     </section>
 

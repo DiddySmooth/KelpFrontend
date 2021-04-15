@@ -5,6 +5,7 @@ const signInScreen = document.querySelector('#loginSection')
 const allBusinessScreen = document.querySelector('#businessListSection')
 const createBusinessScreen = document.querySelector('#createBusiness')
 const singleBusinessScreen = document.querySelector('#businessPage')
+const profileScreen = document.querySelector('#profilePage')
 const logoutButton = document.querySelector('#logoutNav')
 const home = document.querySelector("#homeNav")
 const signUp = document.querySelector("#signUpNav")
@@ -12,7 +13,10 @@ const login = document.querySelector("#loginNav")
 const allBusiness = document.querySelector("#allBusinessNav")
 const logout = document.querySelector("#logoutNav")
 const myBusiness = document.querySelector("#myBusinessNav")
-let singleBusiness = document.querySelector("#business")
+const profile = document.querySelector("#profileNav")
+const businessList = document.querySelector("#businessList")
+const createSubmit = document.querySelector("#createBusinessForm")
+
 
 const signUpForm = document.querySelector("#signUpForm")
 /////Add Events listeners to elements /////
@@ -35,18 +39,19 @@ allBusiness.addEventListener('click', () => {
     getAllBusiness()
 })
 
-singleBusiness.addEventListener('click', () => {
-    switchToSingleBusinessScreen()
-    
-})
-
 logoutButton.addEventListener('click', () => {
     logoutClear()
 })
 
 myBusiness.addEventListener('click', () => {
     switchToCreateBusinessScreen()
+    getAllUserBusiness()
 })
+
+profile.addEventListener('click', () => {
+    switchToProfileScreen()
+})
+
 
 
 ///// Switch Screen Functions /////
@@ -58,6 +63,7 @@ const switchToHome = () => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
 }
 const switchToSignUp = () => {
     welcomeScreen.classList.add("hidden")
@@ -66,6 +72,7 @@ const switchToSignUp = () => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
 }
 
 const switchToLogin = () => {
@@ -75,6 +82,7 @@ const switchToLogin = () => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
 }
 
 const switchToAllBusiness = () => {
@@ -84,6 +92,7 @@ const switchToAllBusiness = () => {
     allBusinessScreen.classList.remove("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
 }
 
 const switchToCreateBusinessScreen = () => {
@@ -93,15 +102,18 @@ const switchToCreateBusinessScreen = () => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.remove("hidden")
     singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
 }
 
-const switchToSingleBusinessScreen = () => {
+const switchToSingleBusinessScreen = (id) => {
     welcomeScreen.classList.add("hidden")
     signUpScreen.classList.add("hidden")
     signInScreen.classList.add("hidden")
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.remove("hidden")
+    profileScreen.classList.add("hidden")
+    console.log(id)
 }
 
 const switchToLoggedIn = () => {
@@ -109,12 +121,24 @@ const switchToLoggedIn = () => {
     signUp.classList.add("hidden")
     login.classList.add("hidden")
     myBusiness.classList.remove("hidden")
+    profile.classList.remove("hidden")
 }
 const switchToLoggedOut = () => {
     logout.classList.add("hidden")
     signUp.classList.remove("hidden")
     login.classList.remove("hidden")
     myBusiness.classList.add("hidden")
+    profile.classList.add("hidden")
+}
+
+const switchToProfileScreen = () => {
+    welcomeScreen.classList.add("hidden")
+    signUpScreen.classList.add("hidden")
+    signInScreen.classList.add("hidden")
+    allBusinessScreen.classList.add("hidden")
+    createBusinessScreen.classList.add("hidden")
+    singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.remove("hidden")
 }
 
 const logoutClear = () => {
@@ -146,18 +170,15 @@ signUpForm.addEventListener('submit', async (e) => {
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault()
 
-    console.log("submitted")
     const email = document.querySelector('#loginEmail').value
     const password = document.querySelector('#loginPassword').value
 
-    
-    console.log(email, password)
     try {
         const response = await axios.post('http://localhost:3000/user/login', {
             email: email,
             password: password
     })
-    console.log(response)
+
     const userId = await response.data.id
     const userName =  await response.data.name
     localStorage.setItem('userId', userId) 
@@ -170,11 +191,74 @@ loginForm.addEventListener('submit', async (e) => {
 
 })
 
+createSubmit.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    console.log("click")
+
+    let userId = localStorage.getItem('userId')
+    const name = document.querySelector('#businessName').value
+    const address = document.querySelector('#businessAddress').value
+    const description = document.querySelector('#businessDescription').value
+    const type = document.querySelector('#businessType').value
+    const image = document.querySelector('#businessImg').value
+    console.log(name, address, description, type, image)
+
+    try {
+        const response = await axios.post(`http://localhost:3000/business/${userId}`, {
+            name: name,
+            address: address,
+            description: description,
+            type: type,
+            img: image
+    })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 const getAllBusiness = async () =>{
-    console.log("getAllBusiness")
+    /////Removes all business from DOM//////
+    while(businessList.firstChild) {
+        businessList.firstChild.remove()
+    }
+
+    try {
+        const response = await axios.get('http://localhost:3000/business', {
+    })
+    /////Add business into the DOM/////
+    for(i = 0; i<response.data.business.length; i++){
+        let div = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let p = document.createElement('p')
+
+
+        div.setAttribute("businessId", response.data.business[i].id)
+        div.classList.add("business")
+        h2.setAttribute("id","businessName")
+        p.setAttribute("id", "businessDescription")
+
+        h2.innerText = response.data.business[i].name
+        p.innerText = response.data.business[i].description
+
+        div.append(h2)
+        div.append(p)
+        div.addEventListener('click', () => {
+            switchToSingleBusinessScreen(div.getAttribute("businessId"))
+        })
+        businessList.append(div)
+    }
+    } catch (error) { 
+        console.log(error)
+    }
+}
+
+const getAllUserBusiness = async () =>{
+    userId = localStorage.getItem('userId')
     try {
         const response = await axios.get('replace with route', {
     })
+    
     let div = document.createElement('div')
     let h2 = document.createElement('h2')
     let p = document.createElement('p')
@@ -189,12 +273,49 @@ const getAllBusiness = async () =>{
 
     div.append(h2)
     div.append(p)
-
-
     } catch (error) { 
         console.log(error)
     }
 }
+
+const getSingleBusiness = async () =>{
+    /////Removes all business from DOM//////
+    while(businessList.firstChild) {
+        businessList.firstChild.remove()
+    }
+
+    try {
+        const response = await axios.get('http://localhost:3000/business', {
+    })
+    /////Add business into the DOM/////
+    
+    let div = document.createElement('div')
+    let h2 = document.createElement('h2')
+    let p = document.createElement('p')
+
+
+    div.setAttribute("businessId", response.data.business[i].id)
+    div.classList.add("business")
+    h2.setAttribute("id","businessName")
+    p.setAttribute("id", "businessDescription")
+
+    h2.innerText = response.data.business[i].name
+    p.innerText = response.data.business[i].description
+
+    div.append(h2)
+    div.append(p)
+    div.addEventListener('click', () => {
+        switchToSingleBusinessScreen(div.getAttribute("businessId"))
+    })
+    businessList.append(div)
+    
+    } catch (error) { 
+        console.log(error)
+    }
+}
+
+
+
 
 
 
@@ -210,3 +331,12 @@ const authCheck = () => {
     }
 }
 authCheck()
+
+
+
+
+
+
+
+
+
