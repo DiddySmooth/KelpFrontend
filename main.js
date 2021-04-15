@@ -30,10 +30,12 @@ login.addEventListener('click', () => {
 
 allBusiness.addEventListener('click', () => {
     switchToAllBusiness()
+    getAllBusiness()
 })
 
 singleBusiness.addEventListener('click', () => {
     switchToSingleBusinessScreen()
+    
 })
 
 ///// Switch Screen Functions /////
@@ -89,7 +91,6 @@ const switchToSingleBusinessScreen = () => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.remove("hidden")
-    console.log("Home")
 }
 
 
@@ -133,3 +134,28 @@ loginForm.addEventListener('submit', async (e) => {
     }
 
 })
+
+const getAllBusiness = async () =>{
+    console.log("getAllBusiness")
+    try {
+        const response = await axios.get('replace with route', {
+    })
+    let div = document.createElement('div')
+    let h2 = document.createElement('h2')
+    let p = document.createElement('p')
+
+    div.setAttribute("businessId", id)
+    div.setAttribute("id","business")
+    h2.setAttribute("id","businessName")
+    p.setAttribute("id", "businessDescription")
+
+    h2.innerText = response.data.name
+    p.innerText = response.data.description
+
+    div.append(h2)
+    div.append(p)
+
+    } catch (error) { 
+        console.log(error)
+    }
+}
