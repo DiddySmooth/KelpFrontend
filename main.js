@@ -288,12 +288,12 @@ const getSingleBusiness = async (id) =>{
     while(singleBusinessList.firstChild) {
         singleBusinessList.firstChild.remove()
     }
-
+    singleId = id
     try {
         const response = await axios.get(`http://localhost:3000/business/${id}`, {
     })
     /////Add business into the DOM/////
-    singleId = id
+    
     console.log(id, singleId)
     let div = document.createElement('div')
     let h2 = document.createElement('h2')
@@ -312,10 +312,7 @@ const getSingleBusiness = async (id) =>{
 
     singleBusinessList.append(div)
     
-    
 
-
-    
     } catch (error) { 
         console.log(error)
     }
@@ -326,13 +323,13 @@ businessEditButton.addEventListener('click', () => {
 })
 
 businessDeleteButton.addEventListener('click', () => {
-    businessDelete(singleId)
+    businessDelete()
 })
 
-const businessDelete = async (id) => {
-    console.log(id)
-    let res = await axios.delete(`http://localhost:3000/business/${id}`)
-    console.log(res)
+const businessDelete = async () => {
+    console.log(singleId)
+    let response = await axios.delete(`http://localhost:3000/business/${singleId}`)
+    console.log(response)
     switchToAllBusiness()
     getAllBusiness()
     
