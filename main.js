@@ -15,8 +15,10 @@ const logout = document.querySelector("#logoutNav")
 const myBusiness = document.querySelector("#myBusinessNav")
 const profile = document.querySelector("#profileNav")
 const businessList = document.querySelector("#businessList")
+const singleBusinessList = document.querySelector("#singleBusinessList")
 const createSubmit = document.querySelector("#createBusinessForm")
-
+const businessEdit = document.querySelector("#businessEdit")
+const businessDelete = document.querySelector("#businessDelete")
 
 const signUpForm = document.querySelector("#signUpForm")
 /////Add Events listeners to elements /////
@@ -113,7 +115,7 @@ const switchToSingleBusinessScreen = (id) => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.remove("hidden")
     profileScreen.classList.add("hidden")
-    console.log(id)
+    getSingleBusiness(id)
 }
 
 const switchToLoggedIn = () => {
@@ -278,36 +280,36 @@ const getAllUserBusiness = async () =>{
     }
 }
 
-const getSingleBusiness = async () =>{
+const getSingleBusiness = async (id) =>{
     /////Removes all business from DOM//////
-    while(businessList.firstChild) {
-        businessList.firstChild.remove()
+    while(singleBusinessList.firstChild) {
+        singleBusinessList.firstChild.remove()
     }
 
     try {
-        const response = await axios.get('http://localhost:3000/business', {
+        const response = await axios.get(`http://localhost:3000/business/${id}`, {
     })
     /////Add business into the DOM/////
     
     let div = document.createElement('div')
     let h2 = document.createElement('h2')
     let p = document.createElement('p')
+    
 
 
-    div.setAttribute("businessId", response.data.business[i].id)
     div.classList.add("business")
     h2.setAttribute("id","businessName")
     p.setAttribute("id", "businessDescription")
 
-    h2.innerText = response.data.business[i].name
-    p.innerText = response.data.business[i].description
+    h2.innerText = response.data.business.name
+    p.innerText = response.data.business.description
 
     div.append(h2)
     div.append(p)
     div.addEventListener('click', () => {
         switchToSingleBusinessScreen(div.getAttribute("businessId"))
     })
-    businessList.append(div)
+    singleBusinessList.append(div)
     
     } catch (error) { 
         console.log(error)
