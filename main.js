@@ -11,6 +11,7 @@ const signUp = document.querySelector("#signUpNav")
 const login = document.querySelector("#loginNav")
 const allBusiness = document.querySelector("#allBusinessNav")
 const logout = document.querySelector("#logoutNav")
+const myBusiness = document.querySelector("#myBusinessNav")
 let singleBusiness = document.querySelector("#business")
 
 const signUpForm = document.querySelector("#signUpForm")
@@ -41,6 +42,10 @@ singleBusiness.addEventListener('click', () => {
 
 logoutButton.addEventListener('click', () => {
     logoutClear()
+})
+
+myBusiness.addEventListener('click', () => {
+    switchToCreateBusinessScreen()
 })
 
 
@@ -103,11 +108,13 @@ const switchToLoggedIn = () => {
     logout.classList.remove("hidden")
     signUp.classList.add("hidden")
     login.classList.add("hidden")
+    myBusiness.classList.remove("hidden")
 }
 const switchToLoggedOut = () => {
     logout.classList.add("hidden")
     signUp.classList.remove("hidden")
     login.classList.remove("hidden")
+    myBusiness.classList.add("hidden")
 }
 
 const logoutClear = () => {
