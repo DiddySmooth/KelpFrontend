@@ -20,6 +20,8 @@ const createSubmit = document.querySelector("#createBusinessForm")
 const businessEditButton = document.querySelector("#businessEdit")
 const businessDeleteButton = document.querySelector("#businessDelete")
 let singleId;
+const updateBusiness = document.querySelector('#updateBusiness')
+const updateBusinessForm = document.querySelector('#updateBusinessForm')
 
 const signUpForm = document.querySelector("#signUpForm")
 /////Add Events listeners to elements /////
@@ -59,6 +61,16 @@ profile.addEventListener('click', () => {
 
 
 ///// Switch Screen Functions /////
+const switchToUpdateBusiness = () => {
+    welcomeScreen.classList.add("hidden")
+    signUpScreen.classList.add("hidden")
+    signInScreen.classList.add("hidden")
+    allBusinessScreen.classList.add("hidden")
+    createBusinessScreen.classList.add("hidden")
+    updateBusiness.classList.remove("hidden")
+    singleBusinessScreen.classList.add("hidden")
+    profileScreen.classList.add("hidden")
+}
 
 const switchToHome = () => {
     welcomeScreen.classList.remove("hidden")
@@ -213,7 +225,7 @@ createSubmit.addEventListener('submit', async (e) => {
             description: description,
             type: type,
             img: image
-    })
+        })      
     createSubmit.reset()
     } catch (error) {
         console.log(error)
@@ -343,8 +355,49 @@ const businessDelete = async () => {
 }
 
 const businessEdit = async (id) =>{
-    console.log("edit")
+    // e.preventDefault()
+
+    try {
+        const response = await axios.get(`http://localhost:3000/business/${id}`, {
+    })
+    console.log(response)
+    switchToUpdateBusiness()
+    let userId = localStorage.getItem('userId')
+    document.querySelector('#editBusinessName').value = response.data.business.name
+    document.querySelector('#editBusinessAddress').value = response.data.business.address
+    document.querySelector('#editBusinessDescription').value = response.data.business.description
+    document.querySelector('#editBusinessType').value = response.data.business.type
+    document.querySelector('#editBusinessImg').value = response.data.business.image
+
+    } catch (error) {
+        console.log(error)
+    }
 }
+
+updateBusinessForm.addEventListener('submit', async (e) => {
+    e.preventDefault() 
+    let userId = localStorage.getItem('userId')
+    const name = document.querySelector('#editBusinessName').value
+    const address = document.querySelector('#editBusinessAddress').value
+    const description = document.querySelector('#editBusinessDescription').value
+    const type = document.querySelector('#editBusinessType').value
+    const image = document.querySelector('#editBusinessImg').value
+    console.log(name, address, description, type, image)
+
+    try {
+        const response = await axios.put(`http://localhost:3000/business/${singleId}`, {
+            name: name,
+            address: address,
+            description: description,
+            type: type,
+            img: image
+        
+    }) 
+    console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+})  
 
 const authCheck = () => {
     const userId = localStorage.getItem('userId')
