@@ -23,13 +23,10 @@
         <div id="welcome">
             <h1 id="kelpLogo">Kelp</h1>
             <h2>Welcome to the Kelp review platform.</h2>
-            <form id="searchBox">
-                <input type="text" placeholder="Search" id="searchInput">
-            </form>
+           
         </div>
     </section>
     <div class="searchButton">
-        <button>sample search</button>
     </div>
     
     <section id="signUpSection" class="hidden">
@@ -99,6 +96,7 @@
         <div>
             <button id="businessEdit">Edit</button>
             <button id="businessDelete">Delete</button>
+            <button id="createReviewButton">Review</button>
         </div>
     </section>
 
@@ -115,9 +113,27 @@
         <div id="userProfile">
             <h2>Users Profile</h2>
             <button id="myBusinessNav">My businesses</button>
-            <button>Edit Profile</button>
-            <button>Delete Profile</button>
+    
         </div>
+    </section>
+
+    <section id="reviews" class="hidden">
+        <div class="reviewContainer">
+            <div class="name">0</div>
+            <div class="headline">0</div>
+            <div class="content">0</div>
+            <div class="rating">0</div>
+        </div>
+    </section>
+
+    <section id="createReview" class="hidden">
+        <form id="createReviewForm">
+            <input type="text" id="createReviewName">
+            <input type="text" id="createReviewHeadline">
+            <input type="text" id="createReviewcontent">
+            <input type="text" id="createReviewrating">
+            <input type="submit" value="submit">
+        </form>
     </section>
 
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>

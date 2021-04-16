@@ -24,6 +24,8 @@ const updateBusiness = document.querySelector('#updateBusiness')
 const updateBusinessForm = document.querySelector('#updateBusinessForm')
 
 const signUpForm = document.querySelector("#signUpForm")
+const reviews = document.querySelector('#reviews')
+const createReview = document.querySelector('#createReview')
 /////Add Events listeners to elements /////
 
 
@@ -58,6 +60,9 @@ profile.addEventListener('click', () => {
     switchToProfileScreen()
 })
 
+createReviewButton.addEventListener('click', () => {
+    createUserReview()
+})
 
 
 ///// Switch Screen Functions /////
@@ -70,6 +75,8 @@ const switchToUpdateBusiness = () => {
     updateBusiness.classList.remove("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
 }
 
 const switchToHome = () => {
@@ -80,7 +87,11 @@ const switchToHome = () => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
 }
+
 const switchToSignUp = () => {
     welcomeScreen.classList.add("hidden")
     signUpScreen.classList.remove("hidden")
@@ -89,6 +100,9 @@ const switchToSignUp = () => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
 }
 
 const switchToLogin = () => {
@@ -99,6 +113,9 @@ const switchToLogin = () => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
 }
 
 const switchToAllBusiness = () => {
@@ -109,6 +126,9 @@ const switchToAllBusiness = () => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
 }
 
 const switchToCreateBusinessScreen = () => {
@@ -119,6 +139,10 @@ const switchToCreateBusinessScreen = () => {
     createBusinessScreen.classList.remove("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
+
 }
 
 const switchToSingleBusinessScreen = (id) => {
@@ -128,7 +152,11 @@ const switchToSingleBusinessScreen = (id) => {
     allBusinessScreen.classList.add("hidden")
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.remove("hidden")
+    reviews.classList.remove("hidden")
     profileScreen.classList.add("hidden")
+    updateBusiness.classList.add("hidden")
+    createReview.classList.add("hidden")
+
     getSingleBusiness(id)
 }
 
@@ -155,6 +183,10 @@ const switchToProfileScreen = () => {
     createBusinessScreen.classList.add("hidden")
     singleBusinessScreen.classList.add("hidden")
     profileScreen.classList.remove("hidden")
+    updateBusiness.classList.add("hidden")
+    reviews.classList.add("hidden")
+    createReview.classList.add("hidden")
+
 }
 
 const logoutClear = () => {
@@ -176,7 +208,14 @@ signUpForm.addEventListener('submit', async (e) => {
             name: name,
             email: email,
             password: password
-    })
+    }) 
+    console.log(response)
+    const userId = await response.data.user.id
+    const userName =  await response.data.user.name
+    localStorage.setItem('userId', userId) 
+    localStorage.setItem('userName', userName) 
+    switchToHome()
+    authCheck()
     } catch (error) {
         console.log(error)
     }
@@ -187,6 +226,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     const email = document.querySelector('#loginEmail').value
     const password = document.querySelector('#loginPassword').value
+    console.log(password)
 
     try {
         const response = await axios.post('http://localhost:3000/user/login', {
@@ -201,6 +241,7 @@ loginForm.addEventListener('submit', async (e) => {
     switchToHome()
     authCheck()
     } catch (error) {
+        alert('wrong username and password')
         console.log(error)
     }
 
@@ -399,6 +440,11 @@ updateBusinessForm.addEventListener('submit', async (e) => {
     }
 })  
 
+const createUserReview = () => {
+    console.log('review')
+    createReview.classList.remove("hidden")
+}
+
 const authCheck = () => {
     const userId = localStorage.getItem('userId')
     if (userId) {
@@ -411,6 +457,7 @@ const authCheck = () => {
     }
 }
 authCheck()
+
 
 
 
