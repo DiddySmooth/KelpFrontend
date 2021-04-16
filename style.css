@@ -9,12 +9,24 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #41b3a3
+    background-color: #A8D0E6;
 }
+button{
+    width: 150px;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #24305e;
+    font-size: 1rem;
+    margin: 10px;
+}
+
 #businessList{
-    background-color: #e8a87c;
-    width: 800px;
+    background-color: #F76C6C;
+    width: 500px;
     animation: fadeIn 2s;
+    border: solid 1px white;
+    padding: 15px 15px 15px 15px;
 }
 .businessName{
     text-align: center;
@@ -33,24 +45,37 @@ body{
     width: 384px;
     height: 216px;
 }
-#business{
+.business{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: solid 1px white;
+    color: white;
+    background-color: #F76C6C;
 }
+
+#businessUpdate{
+    color: white;
+    background-color: #F76C6C;
+    border: solid 1px white;
+    padding: 15px;
+    text-align: center;
+}
+
 #kelpLogo{
     font-size: 45px;
     font-family: 'Orelega One', cursive;
     margin: 0px;
 }
+
 #login{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #E8A87C;
+    background-color: #F76C6C;
     width: 250px;
     margin-top: 150px;
-    border-radius: 15px;
+    animation: fadeIn 2s;
 }
 #loginHeader{
     width: 175px;
@@ -69,24 +94,45 @@ body{
     height: 30px;
     margin: 15px;
 }
+#logo{
+    display: flex;
+    color: #24305e;
+}
+
 #navBar{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     color:white;
-    background-color: #E27D60;
+    background-color: #F76C6C;
     height: 30px;
     margin: 15px 15px;
     border: solid 1px white;
+    width: 100%;
+    box-shadow: white;
+
 }
 .navLinks{
-    margin-left: 10px;
+    margin-left: 30px;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-right:10px;
+    margin-right:30px;
     height:20px;
-    padding: 0;;
+    padding: 0;
+    box-shadow: white;
 }
+
+#reviewContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F76C6C;
+    border: solid 1px white;
+    width: 500px;
+    padding: 15px 15px 15px 15px;
+    color:white;
+}
+
 #searchBox{
     display: flex;
     justify-content: center;
@@ -101,10 +147,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #E8A87C;
+    background-color: #F76C6C;
     width: 250px;
     margin-top: 150px;
-    border-radius: 15px;
     animation: fadeIn 2s;
 }
 #signUpForm{
@@ -125,6 +170,23 @@ body{
     height: 30px;
     margin: 15px;
 }
+.submitButton{
+    width: 150px;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #24305e;
+    font-size: 1rem;
+    margin: 10px;
+}
+
+#updateBusinessForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 #welcome{
     display: flex;
     flex-direction: column;
@@ -140,16 +202,10 @@ body{
     text-align: center;
 }
 
-button{
-    width: 200px;
-    height: 40px;
-    border: none;
+#userHeader{
+    text-align: center;
     color: white;
-    background-color: #E8A87C;
-    font-size: 1rem;
-    margin: 10px;
 }
-
 
 @keyframes fadeIn {
     0% {opacity:0;}
