@@ -214,6 +214,7 @@ createSubmit.addEventListener('submit', async (e) => {
             type: type,
             img: image
     })
+    createSubmit.reset()
     } catch (error) {
         console.log(error)
     }
@@ -238,8 +239,8 @@ const getAllBusiness = async () =>{
 
         div.setAttribute("businessId", response.data.business[i].id)
         div.classList.add("business")
-        h2.setAttribute("id","businessName")
-        p.setAttribute("id", "businessDescription")
+        h2.setAttribute("id","businessNameDisplay")
+        p.setAttribute("id", "businessDescriptionDisplay")
 
         h2.innerText = response.data.business[i].name
         p.innerText = response.data.business[i].description
@@ -269,8 +270,8 @@ const getAllUserBusiness = async () =>{
 
         div.setAttribute("businessId", response.data.business[i].id)
         div.classList.add("business")
-        h2.setAttribute("id","businessName")
-        p.setAttribute("id", "businessDescription")
+        h2.setAttribute("id","businessNameDisplay")
+        p.setAttribute("id", "businessDescriptionDisplay")
 
         h2.innerText = response.data.business[i].name
         p.innerText = response.data.business[i].description
@@ -307,8 +308,8 @@ const getSingleBusiness = async (id) =>{
 
 
     div.classList.add("business")
-    h2.setAttribute("id","businessName")
-    p.setAttribute("id", "businessDescription")
+    h2.setAttribute("id","businessNameDisplay")
+    p.setAttribute("id", "businessDescriptionDisplay")
 
     h2.innerText = response.data.business.name
     p.innerText = response.data.business.description
@@ -341,9 +342,9 @@ const businessDelete = async () => {
     
 }
 
-
-
-
+const businessEdit = async (id) =>{
+    console.log("edit")
+}
 
 const authCheck = () => {
     const userId = localStorage.getItem('userId')
