@@ -1,3 +1,5 @@
+
+
 /////Grabs all Elements that might be clicked on /////
 const welcomeScreen = document.querySelector('#welcomeSection')
 const signUpScreen = document.querySelector('#signUpSection')
@@ -26,6 +28,7 @@ const updateBusinessForm = document.querySelector('#updateBusinessForm')
 const signUpForm = document.querySelector("#signUpForm")
 const reviews = document.querySelector('#reviews')
 const createReview = document.querySelector('#createReview')
+const createReviewForm = document.querySelector('#createReviewForm')
 /////Add Events listeners to elements /////
 
 
@@ -158,6 +161,7 @@ const switchToSingleBusinessScreen = (id) => {
     createReview.classList.add("hidden")
 
     getSingleBusiness(id)
+    displayReviews()
 }
 
 const switchToLoggedIn = () => {
@@ -441,9 +445,61 @@ updateBusinessForm.addEventListener('submit', async (e) => {
 })  
 
 const createUserReview = () => {
-    console.log('review')
+    // console.log('review')
     createReview.classList.remove("hidden")
 }
+
+
+const displayReviews = async () => {
+    while (reviews.firstChild) {
+        reviews.firstChild.remove()
+    }
+    const response = await axios.get(`http://localhost:3000/business/${singleId}/reviews`)
+    console.log(response.data.reviews)
+    for (i = 0; i < response.data.reviews.length; i++) {
+        let div = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let content = document.createElement('p')
+        let rating = document.createElement('p')
+        div.setAttribute('id', 'reviewContainer')
+        h2.setAttribute('id', 'reviewTitle')
+        content.setAttribute('id', 'reviewContent')
+        rating.setAttribute('id', 'reviewRating')
+        h2.innerText = response.data.reviews[i].headline
+        content.innerText = response.data.reviews[i].content
+        rating.innerText = response.data.reviews[i].rating
+        div.append(h2)
+        div.append(content)
+        div.append(rating)
+        reviews.append(div) 
+    }
+    
+}
+
+
+
+
+createReviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault() 
+
+    let userId = localStorage.getItem('userId')
+    const headline = document.querySelector('#createReviewHeadline').value
+    const content = document.querySelector('#createReviewContent').value
+    const rating = document.querySelector('#createReviewRating').value
+    console.log(headline,content,rating)
+    try {
+        const response = await axios.post(`http://localhost:3000/business/${singleId}/comment/${userId}`, {
+            headline: headline,
+            content: content,
+            rating: rating
+        })      
+    createReviewForm.reset()
+    switchToSingleBusinessScreen(singleId)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 const authCheck = () => {
     const userId = localStorage.getItem('userId')

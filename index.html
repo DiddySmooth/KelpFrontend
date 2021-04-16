@@ -8,8 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
     <title>Kelp</title>
+    <script src="https://kit.fontawesome.com/39263ca8c3.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    
     <nav id="navBar">
         <p id="homeNav" class="navLinks">Home</p>
         <p id="loginNav" class="navLinks">Login</p>
@@ -21,7 +23,9 @@
     
     <section id="welcomeSection" class="">
         <div id="welcome">
-            <h1 id="kelpLogo">Kelp</h1>
+            <div id="logo">
+            <h1 id="kelpLogo">Kelp</h1> <i class="fas fa-leaf"></i>
+            </div>
             <h2>Welcome to the Kelp review platform.</h2>
            
         </div>
@@ -37,7 +41,7 @@
                 <input id="signUpEmail" type="text" class="signUpInput" placeholder="Email">
                 <input id="signUpPassword1" type="text" class="signUpInput" placeholder="Password">
                 <input id="signUpPassword2" type="text" class="signUpInput" placeholder="Re-enter Password">
-                <input type="submit" value="Sign Up!">
+                <input class="submitButton" type="submit" value="Sign Up!">
             </form>
         </div>
         
@@ -49,7 +53,7 @@
             <form id="loginForm">
                 <input id="loginEmail" type="text" class="loginInput" placeholder="Email">
                 <input id="loginPassword" type="text" class="loginInput" placeholder="Password">
-                <input type="submit" value="Log In!">
+                <input class="submitButton" type="submit" value="Log In!">
             </form>
         </div>
     </section>
@@ -68,7 +72,7 @@
                 <input id="businessDescription"type="text" class="businessInput" placeholder="Business Description">
                 <input id="businessType" type="text" class="businessInput" placeholder="Business Type">
                 <input id="businessImg"type="text" class="businessInput" placeholder="Picture">
-                <input type="submit" value="Submit!">
+                <input class="submitButton" type="submit" value="Submit!">
             </form>
         </div>
         
@@ -83,7 +87,7 @@
                 <input id="editBusinessDescription"type="text" class="businessInput" placeholder="Business Description">
                 <input id="editBusinessType" type="text" class="businessInput" placeholder="Business Type">
                 <input id="editBusinessImg"type="text" class="businessInput" placeholder="Picture">
-                <input id="editSubmit" type="submit" value="Submit!">
+                <input class="submitButton" id="editSubmit" type="submit" value="Submit!">
             </form>
         </div>
         
@@ -111,28 +115,22 @@
 
     <section id="profilePage" class="hidden">
         <div id="userProfile">
-            <h2>Users Profile</h2>
+            <h2 id="userHeader">Users Profile</h2>
             <button id="myBusinessNav">My businesses</button>
     
         </div>
     </section>
 
     <section id="reviews" class="hidden">
-        <div class="reviewContainer">
-            <div class="name">0</div>
-            <div class="headline">0</div>
-            <div class="content">0</div>
-            <div class="rating">0</div>
-        </div>
+        
     </section>
 
     <section id="createReview" class="hidden">
         <form id="createReviewForm">
-            <input type="text" id="createReviewName">
-            <input type="text" id="createReviewHeadline">
-            <input type="text" id="createReviewcontent">
-            <input type="text" id="createReviewrating">
-            <input type="submit" value="submit">
+            <input placeholder="headline" type="text" id="createReviewHeadline">
+            <input placeholder="content" type="text" id="createReviewContent">
+            <input placeholder="rating" type="text" id="createReviewRating">
+            <input class="submitButton" type="submit" value="submit">
         </form>
     </section>
 
