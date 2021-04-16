@@ -19,7 +19,6 @@ const singleBusinessList = document.querySelector("#singleBusinessList")
 const createSubmit = document.querySelector("#createBusinessForm")
 const businessEditButton = document.querySelector("#businessEdit")
 const businessDeleteButton = document.querySelector("#businessDelete")
-
 let singleId;
 
 const signUpForm = document.querySelector("#signUpForm")
@@ -262,22 +261,29 @@ const getAllUserBusiness = async () =>{
     try {
         const response = await axios.get(`http://localhost:3000/business/`, {
     })
+    for(i = 0; i<response.data.business.length; i++){
+        let div = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let p = document.createElement('p')
+
+
+        div.setAttribute("businessId", response.data.business[i].id)
+        div.classList.add("business")
+        h2.setAttribute("id","businessName")
+        p.setAttribute("id", "businessDescription")
+
+        h2.innerText = response.data.business[i].name
+        p.innerText = response.data.business[i].description
+
+        div.append(h2)
+        div.append(p)
+        div.addEventListener('click', () => {
+            switchToSingleBusinessScreen(div.getAttribute("businessId"))
+        })
+        businessList.append(div)
+        createBusinessScreen.append(div)
+    }
     
-    console.log(response)
-    let div = document.createElement('div')
-    let h2 = document.createElement('h2')
-    let p = document.createElement('p')
-
-
-    div.setAttribute("id","business")
-    h2.setAttribute("id","businessName")
-    p.setAttribute("id", "businessDescription")
-
-    h2.innerText = response.data.name
-    p.innerText = response.data.description
-
-    div.append(h2)
-    div.append(p)
     } catch (error) { 
         console.log(error)
     }
